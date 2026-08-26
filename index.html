@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Aqua Button</title>
+        <style>
+            :root {
+                /* --shade1: #0F4780; */
+                --shade2: #26baff;
+                --shade1: hsl(from var(--shade2) calc(h + 10) calc(s + 50) calc(l - 30));
+            }
+
+            body {
+                background-color: white;
+                margin: 0;
+                height: 100dvh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: sans-serif;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 16px;
+            }
+
+            button {
+                all: unset;
+                position: relative;
+                padding: 10px 20px;
+                font-size: 20px;
+                border-radius: 200px;
+                background: linear-gradient(to bottom, var(--shade1), var(--shade2));
+                color: white;
+                filter: drop-shadow(0px 2px 8px rgba(0,0,0,0.2));
+                outline: 1px solid var(--shade1);
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                transition: all cubic-bezier(0.59, 0.001, 0, 1.261) 200ms;
+            }
+
+            button::after {
+                content: "";
+                border-radius: inherit;
+                background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.0));
+                position: absolute;
+                margin-inline: auto;
+                top: 2%;
+                width: 87%;
+                height: 70%;
+                z-index: 2;
+            }
+
+            button::before {
+                content: "";
+                inset: 0;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: inherit;
+                border: solid white 2px;
+                box-sizing: border-box;
+                mask-image: linear-gradient(to top, rgba(255,255,255,0.6), rgba(255,255,255,0));
+            }
+
+            button:hover {
+                scale: 1.1;
+            }
+
+            button:active {
+                scale: 0.9;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <Button>Aqua</Button>
+            <Button>Aqua</Button>
+        </div>
+        
+        <div class="wrapper">
+            <Button>Aqua</Button>
+            <Button id="color" onclick="changeColor()">Color</Button>
+            <Button>Aqua</Button>
+        </div>
+
+        <div class="wrapper">
+            <Button>Aqua</Button>
+            <Button>Aqua</Button>
+        </div>
+    </body>
+    
+    <script>
+        let colorArray = ["#26ff80", "#ff26be", "#af26ff", "#26baff"];
+        let i = 0;
+
+        function changeColor() {
+            if (i + 1 < colorArray.length) {
+                i++;
+            } else {
+                i = 0;
+            }
+
+            document.documentElement.style.setProperty("--shade2", colorArray[i]);
+            console.log(colorArray[i], i)
+        }
+    </script>
+</html>
